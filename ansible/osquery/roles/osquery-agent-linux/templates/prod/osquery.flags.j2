@@ -1,0 +1,68 @@
+--allow_unsafe
+
+#configuration control flags
+--config_path=/etc/osquery/osquery.conf
+--config_plugin=filesystem
+--config_tls_endpoint=/api/v1/osquery/config
+--config_refresh=60
+
+#daemon control flags
+--pidfile=/var/osquery/osquery.pidfile
+
+#enrollment
+--enroll_secret_path=/etc/osquery/osquery.key
+--enroll_tls_endpoint=/api/v1/osquery/enroll
+
+#host flags
+--host_identifier=uuid
+
+#enrollment server
+--tls_hostname=self-fleetdm:8080
+--tls_server_certs=/etc/osquery/root_chain.pem
+
+#live query
+--disable_distributed=false
+--distributed_plugin=tls
+--distributed_interval=10
+--distributed_tls_max_attempts=3
+--distributed_tls_read_endpoint=/api/v1/osquery/distributed/read
+--distributed_tls_write_endpoint=/api/v1/osquery/distributed/write
+
+#event flags
+--disable_events=false
+--events_expiry=1
+--events_max=500000
+
+#ebpf events (kernel > 4.18)
+--enable_bpf_events=true
+
+#file events
+--enable_file_events=true
+
+#audit framework events (kernel > 2.6)
+#--audit_allow_config=true
+#--audit_allow_sockets
+#--audit_persist=true
+
+#logging flags
+--logger_plugin=filesystem,syslog,tls
+--logger_tls_endpoint=/api/v1/osquery/log
+--logger_tls_period=10
+--logger_event_type=true
+--logger_path=/var/log/osquery/
+--logger_snapshot_event_type=true
+--logger_min_status=1
+--logger_mode=0640
+--logger_rotate=true
+--logger_rotate_size=10000000
+
+#file carving
+--augeas_lenses=/opt/osquery/share/osquery/lenses
+--disable_carver=false
+--carver_start_endpoint=/api/v1/osquery/carve/begin
+--carver_continue_endpoint=/api/v1/osquery/carve/block
+--carver_block_size=8000000
+
+#watchdog
+--watchdog_memory_limit=350
+--watchdog_utilization_limit=130
