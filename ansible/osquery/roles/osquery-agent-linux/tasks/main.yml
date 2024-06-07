@@ -1,0 +1,10 @@
+---
+# tasks file for osquery agent for linux
+
+- name: osquery-agent-linux | copy GPG key to remote
+  copy:
+    src: osquery.gpg
+    dest: /tmp/osquery.gpg
+  become: yes
+  tags:
+    - install
