@@ -1,1 +1,25 @@
-
+{
+  "options": {
+    "logger_snapshot_event_type": "true",
+    "schedule_splay_percent": 10
+  },
+  "platform": "linux",
+  "schedule": {
+    "process_events":{
+      "query": "SELECT cmdline, ntime, cwd, gid, uid, parent, path, pid FROM bpf_process_events WHERE patch NOT IN ('/bin/sed','/usr/bin/tr','/bin/gawk','/bin/date','/bin/mktemp','/usr/bin/dirname','/usr/bin/head','/usr/bin/jq','/bin/cut','/bin/uname','/bin/basename') and cmdline NOT LIKE '%_key%' AND cmdline NOT LIKE '%secret%';",
+      "interval": 10,
+      "description": "Process events collected from the ebpf event framework"
+    },
+    "socket_events":{
+      "query": "SELECT uid, gid, local_address, local_port, path, pid, remote_address, remote_port, ntime, duration, family, exit_code FROM bpf_socket_events WHERE path NOT IN ('/usr/bin/hostname') AND remote_address NOT IN ('127.0.0.1', '169.254.169.254', '', '0000:0000:0000:0000:0000:0000:0000:0001', '::1', '0000:0000:0000:0000:0000:fff:7f00:0001', 'unknown', '0.0.0.0', '0000:0000:0000:0000:0000:0000:0000:0000');",
+      "interval": 10,
+      "description": "Socket events collected from the ebpf event framework"
+    },
+    "authorized_keys": {
+      "query": "SELECT * FROM users CROSS JOIN authorized_keys USING (uid);",
+      "interval": 86400,
+      "description": "A line-delimited authorized_keys table."
+    }
+  }
+}
+      
