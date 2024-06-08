@@ -1,6 +1,7 @@
 ---
 - name: Check connectivity
   hosts: all
+  become: false
   tasks:
-  - name: Ping all nodes
-    ansible.builtin.ping:
+    - name: Ping node
+      ansible.builtin.ping:
