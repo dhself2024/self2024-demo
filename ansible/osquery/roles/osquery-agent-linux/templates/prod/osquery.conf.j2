@@ -6,7 +6,7 @@
   "platform": "linux",
   "schedule": {
     "process_events":{
-      "query": "SELECT cmdline, ntime, cwd, gid, uid, parent, path, pid FROM bpf_process_events WHERE patch NOT IN ('/bin/sed','/usr/bin/tr','/bin/gawk','/bin/date','/bin/mktemp','/usr/bin/dirname','/usr/bin/head','/usr/bin/jq','/bin/cut','/bin/uname','/bin/basename') and cmdline NOT LIKE '%_key%' AND cmdline NOT LIKE '%secret%';",
+      "query": "SELECT cmdline, ntime, cwd, gid, uid, parent, path, pid FROM bpf_process_events WHERE path NOT IN ('/bin/sed','/usr/bin/tr','/bin/gawk','/bin/date','/bin/mktemp','/usr/bin/dirname','/usr/bin/head','/usr/bin/jq','/bin/cut','/bin/uname','/bin/basename') and cmdline NOT LIKE '%_key%' AND cmdline NOT LIKE '%secret%';",
       "interval": 10,
       "description": "Process events collected from the ebpf event framework"
     },
