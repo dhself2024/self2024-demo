@@ -39,7 +39,7 @@
 
 - name: osquery-agent-linux | copy osquery conf
   template:
-    src: {{env}}/osquery.conf.j2
+    src: "{{env}}/osquery.conf.j2"
     dest: /etc/osquery/osquery.conf
   become: yes
   tags:
@@ -48,7 +48,7 @@
 
 - name: osquery-agent-linux | copy osquery flags file
   template:
-    src: {{env}}/osquery.flags.j2
+    src: "{{env}}/osquery.flags.j2"
     dest: /etc/osquery/osquery.flags
   become: yes
   tags:
@@ -57,7 +57,7 @@
 
 - name: osquery-agent-linux | copy osquery key file
   template:
-    src: {{env}}/osquery.key.j2
+    src: "{{env}}/osquery.key.j2"
     dest: /etc/osquery/osquery.key
   become: yes
   tags:
