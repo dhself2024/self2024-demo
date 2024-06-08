@@ -1,7 +1,7 @@
 ---
 # tasks file for osquery agent for linux
 tasks:
-  - name: Install, configure, and start osquery agent on Linux
+  - name: Install, configure, and start osquery agent on Debian and clones
     block:
       - name: osquery-agent-linux | download osquery agent deb if debian
         ansible.builtin.get_url:
@@ -16,7 +16,8 @@ tasks:
     become: yes
     tags:
       - install
-
+      
+  - name: Install, configure, and start osquery agent on RHEL and clones
     block:
       - name: osquery-agent-linux | download osquery agent rpm if RHEL
         ansible.builtin.get_url:
