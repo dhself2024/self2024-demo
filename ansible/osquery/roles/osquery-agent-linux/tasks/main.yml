@@ -28,11 +28,39 @@
   tags:
     - install
 
-#- name: osquery-agent-linux | copy GPG key to remote
-#  copy:
-#    src: osquery.gpg
-#    dest: /tmp/osquery.gpg
-#  become: yes
-#  tags:
-#    - install
+- name: osquery-agent-linux | copy FleetDM root chain
+  copy:
+    src: root_chain.pem
+    dest: /etc/osquery/root_chain.pem
+  become: yes
+  tags:
+    - install
+    - configuration
+
+- name: osquery-agent-linux | copy osquery conf
+  template:
+    src: {{env}}/osquery.conf.j2
+    dest: /etc/osquery/osquery.conf
+  become: yes
+  tags:
+    - install
+    - configuration
+
+- name: osquery-agent-linux | copy osquery flags file
+  template:
+    src: {{env}}/osquery.flags.j2
+    dest: /etc/osquery/osquery.flags
+  become: yes
+  tags:
+    - install
+    - configuration
+
+- name: osquery-agent-linux | copy osquery key file
+  template:
+    src: {{env}}/osquery.key.j2
+    dest: /etc/osquery/osquery.key
+  become: yes
+  tags:
+    - install
+    - configuration
 
