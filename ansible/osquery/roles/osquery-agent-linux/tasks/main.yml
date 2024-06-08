@@ -11,6 +11,16 @@
   tags:
     - install
 
+- name: osquery-agent-linux | download osquery agent rpm if RHEL
+  ansible.builtin.get_url:
+    url: https://pkg.osquery.io/rpm/osquery-5.12.1-1.linux.x86_64.rpm
+    dest: /tmp/osquery-5.12.1-1.linux.x86_64.rpm
+    checksum: eb3dccd38dec8f92bfd8616fd24f1210486f5f02ffc9d6c016827ab668f67c08
+  when: ansible_distribution == 'Red Hat Enterprise Linux' or ansible_distribution == 'CentOS'
+  become: yes
+  tags:
+    - install
+
 #- name: osquery-agent-linux | copy GPG key to remote
 #  copy:
 #    src: osquery.gpg
