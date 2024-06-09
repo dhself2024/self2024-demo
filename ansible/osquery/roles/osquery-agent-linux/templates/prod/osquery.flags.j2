@@ -65,4 +65,13 @@
 
 #watchdog
 --watchdog_memory_limit=350
+
+#extensions
+--disable_extensions=false
+--extensions_socket=/var/osquery/osquery.em
+--extensions_autoload=/etc/osquery/extensions.load
+--extensions_timeout=3
+--extensions_interval=3
+
+
 --watchdog_utilization_limit=130
