@@ -73,13 +73,13 @@
     - install
     - configuration
 
-handlers:
-  - name: Restart osqueryd
-    ansible.builtin.service:
-      name: osqueryd
-      state: restarted
-      enabled: true
-    tags:
-      - install
-      - configuration
+#handlers:
+#  - name: Restart osqueryd
+#    ansible.builtin.service:
+#      name: osqueryd
+#      state: restarted
+#      enabled: true
+#    tags:
+#      - install
+#      - configuration
   
